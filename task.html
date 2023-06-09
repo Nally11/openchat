@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Website Chat</title>
+    <style>
+        /* Styles for the chat area */
+        #chat-container {
+            width: 400px;
+            height: 300px;
+            border: 1px solid #ccc;
+            overflow-y: scroll;
+        }
+        
+        /* Styles for the chat input area */
+        #chat-input {
+            width: 400px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Website Chat</h1>
+
+    <div id="chat-container"></div>
+    <input type="text" id="username-input" placeholder="Enter your username">
+    <input type="text" id="chat-input" placeholder="Type your message">
+
+    <script>
+        // Function to create a chat message element
+        function createChatMessageElement(username, message) {
+            var messageElement = document.createElement("div");
+            messageElement.textContent = username + ": " + message;
+            return messageElement;
+        }
+
+        // Function to handle sending chat messages
+        function sendChatMessage() {
+            var usernameInput = document.getElementById("username-input");
+            var chatInput = document.getElementById("chat-input");
+            var chatContainer = document.getElementById("chat-container");
+
+            var username = usernameInput.value;
+            var message = chatInput.value;
+
+            if (username && message) {
+                var messageElement = createChatMessageElement(username, message);
+                chatContainer.appendChild(messageElement);
+
+                chatInput.value = "";
+            }
+        }
+
+        // Event listener for sending chat messages on pressing Enter key
+        document.getElementById("chat-input").addEventListener("keydown", function (event) {
+            if (event.keyCode === 13) { // Enter key
+                sendChatMessage();
+            }
+        });
+    </script>
+</body>
+</html>
